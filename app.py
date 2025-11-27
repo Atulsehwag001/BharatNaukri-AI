@@ -87,3 +87,4 @@ if st.button("AI Prediction दो", type="primary"):
 st.markdown("---")
 st.markdown("**Made with ❤️ & ML by Atul Sehwag**")
 st.markdown("Instagram: @atul.sehwag | Ab har sarkari job ki prediction ek click mein!")
+
