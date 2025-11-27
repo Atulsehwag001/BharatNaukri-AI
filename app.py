@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.preprocessing import LabelEncode
+from sklearn.preprocessing import LabelEncoder
 
 st.set_page_config(page_title="BharatNaukri AI", page_icon="India")
 st.title("India BharatNaukri AI - 2026-2030")
@@ -69,6 +69,7 @@ st.markdown("---")
 st.markdown("**Made with ❤️ & 🇮🇳 by Atul Sehwag**")
 st.markdown("Instagram: @atul.sehwag | Share karo sabko!")
 st.markdown('''<meta name="google-site-verification" content="QY_Xj0TbEsq1euF" />''', unsafe_allow_html=True)
+
 
 
 
