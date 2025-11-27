@@ -65,4 +65,8 @@ with col2:
 st.info(f"Exam kab hoga → **{d['exam']}**\n\nSC/ST/PwD/Women usually free ya ₹250-400 tak. Official notification aane ke baad confirm kar lena!")
 
 st.balloons()
+st.markdown("---")
+st.markdown("**Made with ❤️ & 🇮🇳 by Atul Sehwag**")
+st.markdown("Instagram: @atul.sehwag | Share karo sabko!")
+
 
