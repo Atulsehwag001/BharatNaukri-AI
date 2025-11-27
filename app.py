@@ -1,8 +1,7 @@
-# app.py — FINAL BHARATNAUKRI AI (30+ Exams + Dates + Fees + Vacancies)
-import streamlit as st
+# app.py — FINAL BHARATNAUKRI AI (30+ Exams + Dates + Fees + Vacancies
 import streamlit as st
 
-# Google verification tag (safe jagah pe)
+st.set_page_config(page_title="BharatNaukri AI - Sarkari Naukri Predictor 2026")
 st.markdown('<meta name="google-site-verification" content="QY_X-j0Tbesq1euGNuzayj6SPAn-_XjhHnefOPybRe8" />', unsafe_allow_html=True)
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -72,6 +71,7 @@ st.balloons()
 st.markdown("---")
 st.markdown("**Made with ❤️ & 🇮🇳 by Atul Sehwag**")
 st.markdown("Instagram: @official_atul_sehwag001 | Share karo sabko!")
+
 
 
 
