@@ -3,7 +3,21 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
+import streamlit as st
 
+# Google Tag Manager (GSC verify ke liye)
+st.markdown('''
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-SDLC4KF3');</script>
+<!-- End Google Tag Manager -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-SDLC4KF3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+''', unsafe_allow_html=True)
 st.set_page_config(page_title="BharatNaukri AI Pro - 2026-2030", page_icon="India")
 
 st.title("भारतनौकरी AI Pro")
@@ -84,5 +98,6 @@ if st.button("AI Prediction दो", type="primary"):
 st.markdown("---")
 st.markdown("**Made with ❤️ & ML by Atul Sehwag**")
 st.markdown("Instagram: @atul.sehwag | Ab har sarkari job ki prediction ek click mein!")
+
 
 
