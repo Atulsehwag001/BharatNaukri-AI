@@ -68,7 +68,8 @@ st.balloons()
 st.markdown("---")
 st.markdown("**Made with ❤️ & 🇮🇳 by Atul Sehwag**")
 st.markdown("Instagram: @atul.sehwag | Share karo sabko!")
-st.markdown('''<meta name="google-site-verification" content="QY_Xj0TbEsq1euF" />''', unsafe_allow_html=True)
+st.markdown('<meta name="google-site-verification" content="QY_X-j0Tbesq1euGNuzayj6SPAn-_XjhHnefOPybRe8" />' , unsafe_allow_html=True)
+
 
 
 
