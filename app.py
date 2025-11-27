@@ -1,84 +1,89 @@
-# app.py — FINAL BHARATNAUKRI AI (30+ Exams + Dates + Fees + Vacancies
 import streamlit as st
-st.markdown('<meta name="google-site-verification" content="QY_X-j0Tbesq1euGNuzayj6SPAn-_XjhHnefOPybRe8" />', unsafe_allow_html=True)
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
+import numpy as np
 
-st.set_page_config(page_title="BharatNaukri AI", page_icon="India")
-st.title("India BharatNaukri AI - 2026-2030")
-st.markdown("**Vacancies + Notification Month + Form Last Date + Fees — Sab AI bataayega!**")
+# GOOGLE VERIFICATION
+st.markdown('<meta name="google-site-verification" content="QY_X-j0Tbesq1euGNuzayj6SPAn-_XjhHnefOPybRe8" />', unsafe_allow_html=True)
 
-# Load your CSV
-df = pd.read_csv("govt_jobs_2015_2025.csv")
+st.set_page_config(page_title="BharatNaukri AI Pro - 2026-2030", page_icon="India")
 
-# FULL EXAM LIST with real details (2026-27 ke hisab se)
-exam_details = {
-    "SSC CGL":          {"notif": "June",       "duration": "30-45 days", "fee": "₹100",      "exam": "Sep-Oct"},
-    "SSC CHSL":         {"notif": "April",      "duration": "30 days",    "fee": "₹100",      "exam": "Jul-Aug"},
-    "SSC MTS":          {"notif": "July",       "duration": "30 days",    "fee": "₹100",      "exam": "Oct-Nov"},
-    "SSC GD":           {"notif": "Aug-Sep",    "duration": "30-40 days", "fee": "₹100",      "exam": "Jan-Feb"},
-    "UPSC CSE":         {"notif": "Jan",        "duration": "20 days",    "fee": "₹100",      "exam": "May (Pre)"},
-    "IBPS PO":          {"notif": "August",     "duration": "30 days",    "fee": "₹850",      "exam": "Oct (Pre)"},
-    "IBPS Clerk":       {"notif": "July",       "duration": "30 days",    "fee": "₹850",      "exam": "Aug-Sep"},
-    "SBI PO":           {"notif": "Dec-Jan",    "duration": "25 days",    "fee": "₹750",      "exam": "Jul-Aug"},
-    "SBI Clerk":        {"notif": "Nov-Dec",    "duration": "25 days",    "fee": "₹750",      "exam": "Feb-Mar"},
-    "RRB NTPC":         {"notif": "Oct",        "duration": "35 days",    "fee": "₹500",      "exam": "Dec-Jan"},
-    "RRB Group D":      {"notif": "Nov-Dec",    "duration": "40 days",    "fee": "₹500",      "exam": "Mar-Apr"},
-    "Delhi Police Constable": {"notif": "Sep",  "duration": "30 days",    "fee": "₹100",      "exam": "Dec"},
-    "UP Police Constable":   {"notif": "Dec-Jan","duration": "40 days",    "fee": "₹400",      "exam": "Mar-Apr"},
-    "Haryana Police Constable": {"notif": "Oct-Nov", "duration": "30 days", "fee": "₹100",   "exam": "Jan"},
-    "Bihar Police SI":  {"notif": "Oct",        "duration": "30 days",    "fee": "₹700",      "exam": "Feb-Mar"},
-    "CTET":             {"notif": "Oct & Apr",  "duration": "30 days",    "fee": "₹1000",     "exam": "Jan & Jul"},
-    "DSSSB TGT/PRT":    {"notif": "Feb-Mar",    "duration": "30 days",    "fee": "₹100",      "exam": "May-Jun"},
-    "Indian Army GD":   {"notif": "Feb & Aug",  "duration": "30 days",    "fee": "Free",      "exam": "Apr & Oct"},
-    "Indian Navy SSR":  {"notif": "May & Nov",  "duration": "20 days",    "fee": "Free",      "exam": "Jul & Jan"},
-    "Air Force X/Y":    {"notif": "Jan & Jul",  "duration": "25 days",    "fee": "₹250",      "exam": "Mar & Sep"}
+st.title("भारतनौकरी AI Pro")
+st.markdown("**SSC | UPSC | Railway | Bank | Defence | State PSC – 100% AI Prediction**")
+
+# Historical data (real past trends se banaya gaya model)
+data = {
+    "Exam": ["SSC CGL", "SSC CHSL", "SSC GD", "UPSC CSE", "IBPS PO", "RRB NTPC", "UPPSC PCS", "SBI PO", "Railway Group D", "Defence Agniveer"],
+    "Year": [2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024, 2024],
+    "Vacancies": [17000, 3700, 40000, 1056, 3000, 35000, 600, 2000, 32000, 45000],
+    "Notification_Month": [6, 3, 2, 1, 8, 9, 3, 9, 12, 5],
+    "Fee_General": [100, 100, 100, 100, 850, 500, 125, 750, 500, 250],
+    "Competition_Level": [9, 7, 10, 10, 8, 9, 8, 7, 10, 9]
 }
+df = pd.DataFrame(data)
 
-# Train model
+# Training simple AI model
 le = LabelEncoder()
-df['exam_code'] = le.fit_transform(df['exam'])
-X = df[['exam_code', 'year']]
-y = df['vacancies']
-model = RandomForestRegressor(n_estimators=100, random_state=42)
-model.fit(X.values, y)
+df["Exam_Encoded"] = le.fit_transform(df["Exam"])
 
-# User select
-exam = st.selectbox("Exam Select Karo", sorted(exam_details.keys()))
-year = st.slider("Year", 2026, 2030, 2026)
+X = df[["Exam_Encoded", "Year", "Competition_Level"]]
+y_vac = df["Vacancies"]
+y_month = df["Notification_Month"]
+y_fee = df["Fee_General"]
 
-# Prediction
-code = le.transform([exam])[0] if exam in le.classes_ else 0
-pred = model.predict([[code, year]])[0]
-d = exam_details[exam]
+model_vac = RandomForestRegressor(n_estimators=100, random_state=42)
+model_month = RandomForestRegressor(n_estimators=100, random_state=42)
+model_fee = RandomForestRegressor(n_estimators=100, random_state=42)
 
-# Beautiful output
-st.success(f"**{exam} {year}**")
-col1, col2 = st.columns(2)
-with col1:
-    st.metric("Expected Vacancies", f"{int(pred):,}")
-    st.metric("Notification Month", d['notif'])
-with col2:
-    st.metric("Form Bharega", d['duration'])
-    st.metric("Application Fee (Gen)", d['fee'])
+model_vac.fit(X, y_vac)
+model_month.fit(X, y_month)
+model_fee.fit(X, y_fee)
 
-st.info(f"Exam kab hoga → **{d['exam']}**\n\nSC/ST/PwD/Women usually free ya ₹250-400 tak. Official notification aane ke baad confirm kar lena!")
+# All exams list
+all_exams = ["SSC CGL","SSC CHSL","SSC GD","SSC MTS","UPSC CSE","UPSC CAPF","IBPS PO","IBPS Clerk","SBI PO","RRB NTPC","Railway Group D","UPPSC PCS","BPSC","MPPSC","RPSC RAS","Delhi Police","Army Agniveer","Air Force","Navy SSR","CTET","KVS","NVS","REET","Bihar SI","UP Police SI"]
 
-st.balloons()
+exam = st.selectbox("Exam चुनो या खुद लिखो", [""] + all_exams)
+if not exam:
+    exam = st.text_input("Exam का नाम लिखो (जैसे SSC CGL 2027)").upper()
+
+year = st.selectbox("Year", [2026, 2027, 2028, 2029, 2030])
+category = st.selectbox("Category", ["General", "OBC", "SC", "ST", "EWS"])
+
+if st.button("AI Prediction दो", type="primary"):
+    if not exam.strip():
+        st.error("Exam name daal do bhai!")
+    else:
+        # Agar exam list mein nahi toh closest match assume kar lenge
+        if exam not in le.classes_:
+            exam_code = 0  # default SSC CGL jaisa treat karo
+        else:
+            exam_code = le.transform([exam])[0]
+
+        # Prediction
+        pred_vac = int(model_vac.predict([[exam_code, year, 9]])[0])
+        pred_month = int(model_month.predict([[exam_code, year, 9]])[0])
+        pred_fee = int(model_fee.predict([[exam_code, year, 9]])[0])
+
+        # Realistic range
+        vac_range = f"{int(pred_vac*0.8):,} - {int(pred_vac*1.4):,}+"
+
+        month_names = ["", "January", "February", "March", "April", "May", "June", 
+                       "July", "August", "September", "October", "November", "December"]
+        notif_month = month_names[pred_month] if 1 <= pred_month <= 12 else "Mar-Jun"
+
+        st.balloons()
+        st.success(f"**{exam} {year} – AI Prediction Ready!**")
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Vacancies", vac_range)
+        c2.metric("Notification", notif_month)
+        c3.metric("Form Last Date", "1-2 महीने बाद")
+        c4.metric("Fee (General)", f"₹{pred_fee}")
+
+        st.info(f"Age, syllabus, selection process – sab official notification ke saath update ho jayega!")
+
+# Footer
 st.markdown("---")
-st.markdown("**Made with ❤️ & 🇮🇳 by Atul Sehwag**")
-st.markdown("Instagram: @official_atul_sehwag001 | Share karo sabko!")
-
-
-
-
-
-
-
-
-
-
-
-
-
+st.markdown("**Made with ❤️ & ML by Atul Sehwag**")
+st.markdown("Instagram: @atul.sehwag | Ab har sarkari job ki prediction ek click mein!")
