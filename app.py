@@ -4,9 +4,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
-# GOOGLE VERIFICATION
-st.markdown('<meta name="google-site-verification" content="QY_X-j0Tbesq1euGNuzayj6SPAn-_XjhHnefOPybRe8" />', unsafe_allow_html=True)
-
 st.set_page_config(page_title="BharatNaukri AI Pro - 2026-2030", page_icon="India")
 
 st.title("भारतनौकरी AI Pro")
@@ -87,4 +84,5 @@ if st.button("AI Prediction दो", type="primary"):
 st.markdown("---")
 st.markdown("**Made with ❤️ & ML by Atul Sehwag**")
 st.markdown("Instagram: @atul.sehwag | Ab har sarkari job ki prediction ek click mein!")
+
 
